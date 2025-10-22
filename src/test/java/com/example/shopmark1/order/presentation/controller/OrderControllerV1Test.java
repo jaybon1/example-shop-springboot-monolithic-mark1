@@ -99,9 +99,9 @@ class OrderControllerV1Test {
                                         .summary("주문 생성")
                                         .description("""
                                                 주문을 생성합니다. 결제는 별도 요청으로 진행됩니다.
-
+                                                
                                                 ---
-
+                                                
                                                 """)
                                         .build()
                                 )
@@ -111,7 +111,8 @@ class OrderControllerV1Test {
 
         ApiDto<ResPostOrdersDtoV1> responseDto = objectMapper.readValue(
                 mvcResult.getResponse().getContentAsString(),
-                new TypeReference<>() {}
+                new TypeReference<>() {
+                }
         );
 
         assertThat(responseDto.getData().getOrder().getPayment()).isNull();
@@ -140,9 +141,9 @@ class OrderControllerV1Test {
                                         .summary("주문 목록 조회")
                                         .description("""
                                                 주문 목록을 조회합니다.
-
+                                                
                                                 ---
-
+                                                
                                                 """)
                                         .build()
                                 )
@@ -173,9 +174,9 @@ class OrderControllerV1Test {
                                         .summary("주문 상세 조회")
                                         .description("""
                                                 단일 주문을 조회합니다.
-
+                                                
                                                 ---
-
+                                                
                                                 """)
                                         .pathParameters(
                                                 ResourceDocumentation.parameterWithName("id").type(SimpleType.STRING).description("주문 ID")
@@ -209,9 +210,9 @@ class OrderControllerV1Test {
                                         .summary("주문 취소")
                                         .description("""
                                                 생성된 주문을 취소합니다.
-
+                                                
                                                 ---
-
+                                                
                                                 """)
                                         .pathParameters(
                                                 ResourceDocumentation.parameterWithName("id").type(SimpleType.STRING).description("주문 ID")
@@ -279,7 +280,8 @@ class OrderControllerV1Test {
 
         ApiDto<ResPostAuthLoginDtoV1> resLoginDto = objectMapper.readValue(
                 loginResult.getResponse().getContentAsString(),
-                new TypeReference<>() {}
+                new TypeReference<>() {
+                }
         );
 
         return resLoginDto.getData().getAccessJwt();
@@ -312,7 +314,8 @@ class OrderControllerV1Test {
 
         ApiDto<ResPostOrdersDtoV1> responseDto = objectMapper.readValue(
                 mvcResult.getResponse().getContentAsString(),
-                new TypeReference<>() {}
+                new TypeReference<>() {
+                }
         );
 
         return responseDto.getData().getOrder().getId();

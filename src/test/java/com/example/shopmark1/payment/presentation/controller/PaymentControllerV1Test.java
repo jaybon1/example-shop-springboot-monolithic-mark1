@@ -89,9 +89,9 @@ class PaymentControllerV1Test {
                                         .summary("결제 처리")
                                         .description("""
                                                 주문에 대한 결제를 완료합니다.
-
+                                                
                                                 ---
-
+                                                
                                                 """)
                                         .build()
                                 )
@@ -101,7 +101,8 @@ class PaymentControllerV1Test {
 
         ApiDto<ResPostPaymentsDtoV1> responseDto = objectMapper.readValue(
                 mvcResult.getResponse().getContentAsString(),
-                new TypeReference<>() {}
+                new TypeReference<>() {
+                }
         );
 
         assertThat(responseDto.getData().getPayment().getId()).isNotNull();
@@ -132,9 +133,9 @@ class PaymentControllerV1Test {
                                         .summary("결제 상세 조회")
                                         .description("""
                                                 결제 상세를 조회합니다.
-
+                                                
                                                 ---
-
+                                                
                                                 """)
                                         .pathParameters(
                                                 ResourceDocumentation.parameterWithName("id").type(SimpleType.STRING).description("결제 ID")
@@ -147,7 +148,8 @@ class PaymentControllerV1Test {
 
         ApiDto<ResGetPaymentsWithIdDtoV1> responseDto = objectMapper.readValue(
                 mvcResult.getResponse().getContentAsString(),
-                new TypeReference<>() {}
+                new TypeReference<>() {
+                }
         );
 
         assertThat(responseDto.getData().getPayment().getOrder().getStatus()).isEqualTo(OrderEntity.Status.PAID);
@@ -181,7 +183,8 @@ class PaymentControllerV1Test {
 
         ApiDto<ResPostOrdersDtoV1> orderResponse = objectMapper.readValue(
                 orderResult.getResponse().getContentAsString(),
-                new TypeReference<>() {}
+                new TypeReference<>() {
+                }
         );
 
         return orderResponse.getData().getOrder().getId();
@@ -207,7 +210,8 @@ class PaymentControllerV1Test {
 
         ApiDto<ResPostPaymentsDtoV1> paymentResponse = objectMapper.readValue(
                 paymentResult.getResponse().getContentAsString(),
-                new TypeReference<>() {}
+                new TypeReference<>() {
+                }
         );
 
         return paymentResponse.getData().getPayment().getId();
@@ -233,7 +237,8 @@ class PaymentControllerV1Test {
 
         ApiDto<ResPostAuthLoginDtoV1> resLoginDto = objectMapper.readValue(
                 loginResult.getResponse().getContentAsString(),
-                new TypeReference<>() {}
+                new TypeReference<>() {
+                }
         );
 
         return resLoginDto.getData().getAccessJwt();

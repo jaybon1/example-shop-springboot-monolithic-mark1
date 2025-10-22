@@ -44,7 +44,8 @@ public class UserControllerV1Test {
         MvcResult loginMvcResult = login();
         ApiDto<ResPostAuthLoginDtoV1> resLoginDto = objectMapper.readValue(
                 loginMvcResult.getResponse().getContentAsString(),
-                new TypeReference<>() {}
+                new TypeReference<>() {
+                }
         );
         String accessJwt = resLoginDto.getData().getAccessJwt();
         mockMvc.perform(
@@ -85,7 +86,8 @@ public class UserControllerV1Test {
         MvcResult loginMvcResult = login();
         ApiDto<ResPostAuthLoginDtoV1> resLoginDto = objectMapper.readValue(
                 loginMvcResult.getResponse().getContentAsString(),
-                new TypeReference<>() {}
+                new TypeReference<>() {
+                }
         );
         String accessJwt = resLoginDto.getData().getAccessJwt();
         DecodedJWT decodedJWT = JWT.decode(accessJwt);
@@ -125,7 +127,8 @@ public class UserControllerV1Test {
         MvcResult loginMvcResult = login();
         ApiDto<ResPostAuthLoginDtoV1> resLoginDto = objectMapper.readValue(
                 loginMvcResult.getResponse().getContentAsString(),
-                new TypeReference<>() {}
+                new TypeReference<>() {
+                }
         );
         String accessJwt = resLoginDto.getData().getAccessJwt();
         DecodedJWT decodedJWT = JWT.decode(accessJwt);

@@ -35,10 +35,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
 @SpringBootTest
 @AutoConfigureRestDocs
@@ -84,9 +81,9 @@ class ProductControllerV1Test {
                                         .summary("상품 목록 조회")
                                         .description("""
                                                 상품 목록을 조회합니다.
-
+                                                
                                                 ---
-
+                                                
                                                 """)
                                         .queryParameters(
                                                 ResourceDocumentation.parameterWithName("name").type(SimpleType.STRING).description("상품명 부분 검색").optional()
@@ -122,9 +119,9 @@ class ProductControllerV1Test {
                                         .summary("상품 상세 조회")
                                         .description("""
                                                 단일 상품을 조회합니다.
-
+                                                
                                                 ---
-
+                                                
                                                 """)
                                         .pathParameters(
                                                 ResourceDocumentation.parameterWithName("id").type(SimpleType.STRING).description("상품 ID")
@@ -170,9 +167,9 @@ class ProductControllerV1Test {
                                         .summary("상품 등록")
                                         .description("""
                                                 상품을 신규로 등록합니다.
-
+                                                
                                                 ---
-
+                                                
                                                 """)
                                         .build()
                                 )
@@ -182,7 +179,8 @@ class ProductControllerV1Test {
 
         ApiDto<ResPostProductsDtoV1> responseDto = objectMapper.readValue(
                 mvcResult.getResponse().getContentAsString(),
-                new TypeReference<>() {}
+                new TypeReference<>() {
+                }
         );
 
         productRepository.findById(UUID.fromString(responseDto.getData().getProduct().getId()))
@@ -225,9 +223,9 @@ class ProductControllerV1Test {
                                         .summary("상품 수정")
                                         .description("""
                                                 상품 정보를 수정합니다.
-
+                                                
                                                 ---
-
+                                                
                                                 """)
                                         .pathParameters(
                                                 ResourceDocumentation.parameterWithName("id").type(SimpleType.STRING).description("상품 ID")
@@ -267,9 +265,9 @@ class ProductControllerV1Test {
                                         .summary("상품 삭제")
                                         .description("""
                                                 상품을 삭제합니다.
-
+                                                
                                                 ---
-
+                                                
                                                 """)
                                         .pathParameters(
                                                 ResourceDocumentation.parameterWithName("id").type(SimpleType.STRING).description("상품 ID")
@@ -305,7 +303,8 @@ class ProductControllerV1Test {
 
         ApiDto<ResPostAuthLoginDtoV1> resLoginDto = objectMapper.readValue(
                 loginResult.getResponse().getContentAsString(),
-                new TypeReference<>() {}
+                new TypeReference<>() {
+                }
         );
 
         return resLoginDto.getData().getAccessJwt();
@@ -336,7 +335,8 @@ class ProductControllerV1Test {
 
         ApiDto<ResPostProductsDtoV1> responseDto = objectMapper.readValue(
                 mvcResult.getResponse().getContentAsString(),
-                new TypeReference<>() {}
+                new TypeReference<>() {
+                }
         );
 
         return responseDto.getData().getProduct().getId();

@@ -1,7 +1,6 @@
 package com.example.shopmark1.order.application.service;
 
 import com.example.shopmark1.order.domain.entity.OrderEntity;
-import com.example.shopmark1.order.domain.entity.OrderItemEntity;
 import com.example.shopmark1.order.domain.repository.OrderRepository;
 import com.example.shopmark1.order.presentation.advice.OrderError;
 import com.example.shopmark1.order.presentation.advice.OrderException;
@@ -22,13 +21,11 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.util.ReflectionTestUtils;
 
-import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -36,7 +33,6 @@ import java.util.UUID;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 

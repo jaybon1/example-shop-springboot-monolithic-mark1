@@ -123,7 +123,8 @@ public class AuthControllerV1Test {
         MvcResult loginMvcResult = login();
         ApiDto<ResPostAuthLoginDtoV1> resLoginDto = objectMapper.readValue(
                 loginMvcResult.getResponse().getContentAsString(),
-                new TypeReference<>() {}
+                new TypeReference<>() {
+                }
         );
         ReqAuthPostRefreshDtoV1 reqDto = ReqAuthPostRefreshDtoV1.builder()
                 .refreshJwt(resLoginDto.getData().getRefreshJwt())
