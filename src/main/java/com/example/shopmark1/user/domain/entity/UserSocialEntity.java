@@ -1,6 +1,6 @@
 package com.example.shopmark1.user.domain.entity;
 
-import com.example.shopmark1.global.entity.BaseEntity;
+import com.example.shopmark1.global.domain.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;

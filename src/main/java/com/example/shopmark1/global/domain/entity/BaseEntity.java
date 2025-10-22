@@ -1,4 +1,4 @@
-package com.example.shopmark1.global.entity;
+package com.example.shopmark1.global.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
