@@ -1,8 +1,8 @@
 package com.example.shop.order.domain.repository;
 
-import com.example.shop.global.infrastructure.config.jpa.JpaAuditConfig;
-import com.example.shop.global.infrastructure.config.jpa.QuerydslConfig;
-import com.example.shop.global.infrastructure.config.jpa.audit.CustomAuditAware;
+import com.example.shop.common.infrastructure.config.jpa.JpaAuditConfig;
+import com.example.shop.common.infrastructure.config.jpa.QuerydslConfig;
+import com.example.shop.common.infrastructure.config.jpa.audit.CustomAuditAware;
 import com.example.shop.order.domain.entity.OrderEntity;
 import com.example.shop.user.domain.entity.UserEntity;
 import com.example.shop.user.domain.entity.UserRoleEntity;

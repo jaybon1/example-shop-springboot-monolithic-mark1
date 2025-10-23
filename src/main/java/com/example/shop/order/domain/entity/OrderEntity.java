@@ -1,6 +1,6 @@
 package com.example.shop.order.domain.entity;
 
-import com.example.shop.global.domain.entity.BaseEntity;
+import com.example.shop.common.domain.entity.BaseEntity;
 import com.example.shop.payment.domain.entity.PaymentEntity;
 import com.example.shop.user.domain.entity.UserEntity;
 import jakarta.persistence.*;

@@ -1,6 +1,6 @@
 package com.example.shop.product.domain.repository;
 
-import com.example.shop.global.infrastructure.config.jpa.QuerydslConfig;
+import com.example.shop.common.infrastructure.config.jpa.QuerydslConfig;
 import com.example.shop.product.domain.entity.ProductEntity;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
