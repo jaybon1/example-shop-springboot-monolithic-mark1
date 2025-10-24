@@ -129,7 +129,7 @@ class OrderServiceV1Test {
 
     @Test
     @DisplayName("주문 취소는 사용자 본인 또는 관리자/매니저만 가능하다")
-    void cancelOrdersWithAuthority() {
+    void cancelOrderWithAuthority() {
         existingOrder.assignPayment(PaymentEntity.builder()
                 .user(userEntity)
                 .order(existingOrder)
@@ -139,17 +139,17 @@ class OrderServiceV1Test {
         existingOrder.markPaid();
         when(orderRepository.findById(existingOrder.getId())).thenReturn(Optional.of(existingOrder));
 
-        orderServiceV1.cancelOrdersWithId(userEntity.getId(), List.of(UserRoleEntity.Role.USER.toString()), existingOrder.getId());
+        orderServiceV1.cancelOrder(userEntity.getId(), List.of(UserRoleEntity.Role.USER.toString()), existingOrder.getId());
 
         assertThat(existingOrder.getStatus()).isEqualTo(OrderEntity.Status.CANCELLED);
     }
 
     @Test
     @DisplayName("주문 취소 시 권한이 없으면 예외를 던진다")
-    void cancelOrdersForbidden() {
+    void cancelOrderForbidden() {
         when(orderRepository.findById(existingOrder.getId())).thenReturn(Optional.of(existingOrder));
 
-        assertThatThrownBy(() -> orderServiceV1.cancelOrdersWithId(UUID.randomUUID(), List.of("USER"), existingOrder.getId()))
+        assertThatThrownBy(() -> orderServiceV1.cancelOrder(UUID.randomUUID(), List.of("USER"), existingOrder.getId()))
                 .isInstanceOf(OrderException.class)
                 .extracting(Throwable::getMessage)
                 .asString()
@@ -158,11 +158,11 @@ class OrderServiceV1Test {
 
     @Test
     @DisplayName("환불 시 결제를 찾지 못하면 예외를 던진다")
-    void cancelOrdersPaymentMissing() {
+    void cancelOrderPaymentMissing() {
         existingOrder.markPaid();
         when(orderRepository.findById(existingOrder.getId())).thenReturn(Optional.of(existingOrder));
 
-        assertThatThrownBy(() -> orderServiceV1.cancelOrdersWithId(userEntity.getId(), List.of(UserRoleEntity.Role.USER.toString()), existingOrder.getId()))
+        assertThatThrownBy(() -> orderServiceV1.cancelOrder(userEntity.getId(), List.of(UserRoleEntity.Role.USER.toString()), existingOrder.getId()))
                 .isInstanceOf(PaymentException.class)
                 .extracting(Throwable::getMessage)
                 .asString()

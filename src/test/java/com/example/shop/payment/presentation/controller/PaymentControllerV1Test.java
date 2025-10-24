@@ -11,7 +11,7 @@ import com.example.shop.order.presentation.dto.response.ResPostOrdersDtoV1;
 import com.example.shop.payment.domain.entity.PaymentEntity.Method;
 import com.example.shop.payment.domain.entity.PaymentEntity.Status;
 import com.example.shop.payment.presentation.dto.request.ReqPostPaymentsDtoV1;
-import com.example.shop.payment.presentation.dto.response.ResGetPaymentsWithIdDtoV1;
+import com.example.shop.payment.presentation.dto.response.ResGetPaymentDtoV1;
 import com.example.shop.payment.presentation.dto.response.ResPostPaymentsDtoV1;
 import com.example.shop.product.domain.entity.ProductEntity;
 import com.example.shop.product.domain.repository.ProductRepository;
@@ -110,7 +110,7 @@ class PaymentControllerV1Test {
     }
 
     @Test
-    void testGetPaymentsWithIdSuccess() throws Exception {
+    void testGetPaymentSuccess() throws Exception {
         String accessJwt = loginAndGetAccessToken();
         String orderId = createOrder(accessJwt);
         String paymentId = payOrder(accessJwt, orderId);
@@ -146,7 +146,7 @@ class PaymentControllerV1Test {
                 )
                 .andReturn();
 
-        ApiDto<ResGetPaymentsWithIdDtoV1> responseDto = objectMapper.readValue(
+        ApiDto<ResGetPaymentDtoV1> responseDto = objectMapper.readValue(
                 mvcResult.getResponse().getContentAsString(),
                 new TypeReference<>() {
                 }

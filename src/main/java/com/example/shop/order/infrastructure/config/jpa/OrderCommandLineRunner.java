@@ -30,8 +30,8 @@ public class OrderCommandLineRunner implements CommandLineRunner {
             return;
         }
 
-        List<ProductEntity> productList = productRepository.findAll();
-        if (productList.isEmpty()) {
+        List<ProductEntity> products = productRepository.findAll();
+        if (products.isEmpty()) {
             return;
         }
 
@@ -41,10 +41,10 @@ public class OrderCommandLineRunner implements CommandLineRunner {
         }
 
         UserEntity firstUser = userList.get(0);
-        ProductEntity firstProduct = productList.get(0);
+        ProductEntity firstProduct = products.get(0);
         savePaidOrder(firstUser, firstProduct, 2L);
 
-        ProductEntity lastProduct = productList.get(productList.size() - 1);
+        ProductEntity lastProduct = products.get(products.size() - 1);
         UserEntity secondUser = userList.size() > 1 ? userList.get(1) : firstUser;
         savePaidOrder(secondUser, lastProduct, 1L);
     }

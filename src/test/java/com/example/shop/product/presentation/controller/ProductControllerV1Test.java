@@ -8,7 +8,7 @@ import com.example.shop.common.presentation.dto.ApiDto;
 import com.example.shop.product.domain.entity.ProductEntity;
 import com.example.shop.product.domain.repository.ProductRepository;
 import com.example.shop.product.presentation.dto.request.ReqPostProductsDtoV1;
-import com.example.shop.product.presentation.dto.request.ReqPutProductsWithIdDtoV1;
+import com.example.shop.product.presentation.dto.request.ReqPutProductDtoV1;
 import com.example.shop.product.presentation.dto.response.ResPostProductsDtoV1;
 import com.example.shop.user.domain.entity.UserEntity;
 import com.example.shop.user.domain.entity.UserRoleEntity;
@@ -95,7 +95,7 @@ class ProductControllerV1Test {
     }
 
     @Test
-    void testGetProductsWithIdSuccess() throws Exception {
+    void testGetProductSuccess() throws Exception {
         String accessJwt = loginAndGetAccessTokenWithManager();
         ProductEntity productEntity = productRepository.findAll().stream()
                 .findFirst()
@@ -188,14 +188,14 @@ class ProductControllerV1Test {
     }
 
     @Test
-    void testPutProductsWithIdSuccess() throws Exception {
+    void testPutProductSuccess() throws Exception {
         String accessJwt = loginAndGetAccessTokenWithManager();
         String productId = createProduct(accessJwt);
         String updatedName = "updated-product-" + UUID.randomUUID();
 
-        ReqPutProductsWithIdDtoV1 reqDto = ReqPutProductsWithIdDtoV1.builder()
+        ReqPutProductDtoV1 reqDto = ReqPutProductDtoV1.builder()
                 .product(
-                        ReqPutProductsWithIdDtoV1.Product.builder()
+                        ReqPutProductDtoV1.Product.builder()
                                 .name(updatedName)
                                 .price(15000L)
                                 .stock(70L)
@@ -243,7 +243,7 @@ class ProductControllerV1Test {
     }
 
     @Test
-    void testDeleteProductsWithIdSuccess() throws Exception {
+    void testDeleteProductSuccess() throws Exception {
         String accessJwt = loginAndGetAccessTokenWithManager();
         String productId = createProduct(accessJwt);
 

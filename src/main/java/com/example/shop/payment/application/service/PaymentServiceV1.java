@@ -7,7 +7,7 @@ import com.example.shop.payment.domain.repository.PaymentRepository;
 import com.example.shop.payment.presentation.advice.PaymentError;
 import com.example.shop.payment.presentation.advice.PaymentException;
 import com.example.shop.payment.presentation.dto.request.ReqPostPaymentsDtoV1;
-import com.example.shop.payment.presentation.dto.response.ResGetPaymentsWithIdDtoV1;
+import com.example.shop.payment.presentation.dto.response.ResGetPaymentDtoV1;
 import com.example.shop.payment.presentation.dto.response.ResPostPaymentsDtoV1;
 import com.example.shop.user.domain.entity.UserEntity;
 import com.example.shop.user.domain.repository.UserRepository;
@@ -26,7 +26,7 @@ public class PaymentServiceV1 {
     private final OrderRepository orderRepository;
     private final UserRepository userRepository;
 
-    public ResGetPaymentsWithIdDtoV1 getPaymentsWithId(UUID paymentId, UUID authUserId) {
+    public ResGetPaymentDtoV1 getPayment(UUID paymentId, UUID authUserId) {
         PaymentEntity paymentEntity = paymentRepository.findById(paymentId)
                 .orElseThrow(() -> new PaymentException(PaymentError.PAYMENT_NOT_FOUND));
 
@@ -34,7 +34,7 @@ public class PaymentServiceV1 {
             throw new PaymentException(PaymentError.PAYMENT_FORBIDDEN);
         }
 
-        return ResGetPaymentsWithIdDtoV1.of(paymentEntity);
+        return ResGetPaymentDtoV1.of(paymentEntity);
     }
 
     @Transactional

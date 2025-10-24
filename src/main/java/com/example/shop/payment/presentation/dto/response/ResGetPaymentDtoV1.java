@@ -12,12 +12,12 @@ import java.util.List;
 
 @Getter
 @Builder
-public class ResGetPaymentsWithIdDtoV1 {
+public class ResGetPaymentDtoV1 {
 
     private Payment payment;
 
-    public static ResGetPaymentsWithIdDtoV1 of(PaymentEntity paymentEntity) {
-        return ResGetPaymentsWithIdDtoV1.builder()
+    public static ResGetPaymentDtoV1 of(PaymentEntity paymentEntity) {
+        return ResGetPaymentDtoV1.builder()
                 .payment(Payment.from(paymentEntity))
                 .build();
     }

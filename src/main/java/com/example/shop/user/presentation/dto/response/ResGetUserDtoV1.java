@@ -9,12 +9,12 @@ import java.util.List;
 
 @Getter
 @Builder
-public class ResGetUsersWithIdDtoV1 {
+public class ResGetUserDtoV1 {
 
     private User user;
 
-    public static ResGetUsersWithIdDtoV1 of(UserEntity userEntity) {
-        return ResGetUsersWithIdDtoV1.builder()
+    public static ResGetUserDtoV1 of(UserEntity userEntity) {
+        return ResGetUserDtoV1.builder()
                 .user(User.from(userEntity))
                 .build();
     }

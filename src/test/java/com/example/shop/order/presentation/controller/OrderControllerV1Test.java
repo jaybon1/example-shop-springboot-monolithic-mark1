@@ -152,7 +152,7 @@ class OrderControllerV1Test {
     }
 
     @Test
-    void testGetOrdersWithIdSuccess() throws Exception {
+    void testGetOrderSuccess() throws Exception {
         String accessJwt = loginAndGetAccessToken("temp1");
         String orderId = createOrder(accessJwt);
 
@@ -188,7 +188,7 @@ class OrderControllerV1Test {
     }
 
     @Test
-    void testPostOrdersCancelSuccess() throws Exception {
+    void testCancelOrderSuccess() throws Exception {
         String accessJwt = loginAndGetAccessToken("temp1");
         String orderId = createOrder(accessJwt);
 
@@ -233,7 +233,7 @@ class OrderControllerV1Test {
     }
 
     @Test
-    void testPostOrdersCancelByManagerSuccess() throws Exception {
+    void testCancelOrderByManagerSuccess() throws Exception {
         String buyerAccessJwt = loginAndGetAccessToken("temp2");
         String orderId = createOrder(buyerAccessJwt);
 

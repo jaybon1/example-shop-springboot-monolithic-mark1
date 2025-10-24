@@ -6,12 +6,12 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class ResPutProductsWithIdDtoV1 {
+public class ResPutProductDtoV1 {
 
     private Product product;
 
-    public static ResPutProductsWithIdDtoV1 of(ProductEntity productEntity) {
-        return ResPutProductsWithIdDtoV1.builder()
+    public static ResPutProductDtoV1 of(ProductEntity productEntity) {
+        return ResPutProductDtoV1.builder()
                 .product(Product.from(productEntity))
                 .build();
     }

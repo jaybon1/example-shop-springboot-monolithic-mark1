@@ -8,7 +8,7 @@ import com.example.shop.order.presentation.advice.OrderError;
 import com.example.shop.order.presentation.advice.OrderException;
 import com.example.shop.order.presentation.dto.request.ReqPostOrdersDtoV1;
 import com.example.shop.order.presentation.dto.response.ResGetOrdersDtoV1;
-import com.example.shop.order.presentation.dto.response.ResGetOrdersWithIdDtoV1;
+import com.example.shop.order.presentation.dto.response.ResGetOrderDtoV1;
 import com.example.shop.order.presentation.dto.response.ResPostOrdersDtoV1;
 import com.example.shop.payment.domain.entity.PaymentEntity;
 import com.example.shop.payment.presentation.advice.PaymentError;
@@ -52,9 +52,9 @@ public class OrderServiceV1 {
                 .build();
     }
 
-    public ResGetOrdersWithIdDtoV1 getOrdersWithId(UUID authUserId, List<String> authUserRoleList, UUID orderId) {
+    public ResGetOrderDtoV1 getOrder(UUID authUserId, List<String> authUserRoleList, UUID orderId) {
         OrderEntity orderEntity = getOrderForUser(orderId, authUserId, authUserRoleList);
-        return ResGetOrdersWithIdDtoV1.of(orderEntity);
+        return ResGetOrderDtoV1.of(orderEntity);
     }
 
     @Transactional
@@ -139,7 +139,7 @@ public class OrderServiceV1 {
     }
 
     @Transactional
-    public void cancelOrdersWithId(UUID authUserId, List<String> authUserRoleList, UUID orderId) {
+    public void cancelOrder(UUID authUserId, List<String> authUserRoleList, UUID orderId) {
         OrderEntity orderEntity = getOrderForUser(orderId, authUserId, authUserRoleList);
 
         if (Status.CANCELLED.equals(orderEntity.getStatus())) {
