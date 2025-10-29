@@ -25,12 +25,12 @@ public class ResGetUsersDtoV1 {
 
     @Getter
     @ToString
-    public static class UserPage extends PagedModel<UserPage.User> {
+    public static class UserPage extends PagedModel<UserPage.UserDto> {
 
         public UserPage(Page<UserEntity> userEntityPage) {
             super(
                     new PageImpl<>(
-                            User.from(userEntityPage.getContent()),
+                            UserDto.from(userEntityPage.getContent()),
                             userEntityPage.getPageable(),
                             userEntityPage.getTotalElements()
                     )
@@ -39,7 +39,7 @@ public class ResGetUsersDtoV1 {
 
         @Getter
         @Builder
-        public static class User {
+        public static class UserDto {
 
             private String id;
             private String username;
@@ -47,14 +47,14 @@ public class ResGetUsersDtoV1 {
             private String email;
             private List<String> roleList;
 
-            private static List<User> from(List<UserEntity> userEntityList) {
+            private static List<UserDto> from(List<UserEntity> userEntityList) {
                 return userEntityList.stream()
-                        .map(User::from)
+                        .map(UserDto::from)
                         .toList();
             }
 
-            public static User from(UserEntity userEntity) {
-                return User.builder()
+            public static UserDto from(UserEntity userEntity) {
+                return UserDto.builder()
                         .id(userEntity.getId().toString())
                         .username(userEntity.getUsername())
                         .nickname(userEntity.getNickname())

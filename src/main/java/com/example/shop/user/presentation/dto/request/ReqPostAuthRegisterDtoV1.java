@@ -14,11 +14,11 @@ public class ReqPostAuthRegisterDtoV1 {
 
     @NotNull(message = "회원 정보를 입력해주세요.")
     @Valid
-    private User user;
+    private UserDto user;
 
     @Getter
     @Builder
-    public static class User {
+    public static class UserDto {
 
         @NotBlank(message = "아이디를 입력해주세요.")
         @Pattern(regexp = Constants.Regex.USERNAME, message = "아이디는 3~20자의 영소문자, 숫자, 언더바(_)만으로 구성해주세요.")

@@ -11,52 +11,52 @@ import java.util.List;
 @Builder
 public class ResGetUserDtoV1 {
 
-    private User user;
+    private UserDto user;
 
     public static ResGetUserDtoV1 of(UserEntity userEntity) {
         return ResGetUserDtoV1.builder()
-                .user(User.from(userEntity))
+                .user(UserDto.from(userEntity))
                 .build();
     }
 
     @Getter
     @Builder
-    public static class User {
+    public static class UserDto {
 
         private String id;
         private String username;
         private String nickname;
         private String email;
-        private List<UserRole> userRoleList;
+        private List<UserRoleDto> userRoleList;
 //        private List<UserSocial> userSocialList;
 
-        public static User from(UserEntity userEntity) {
+        public static UserDto from(UserEntity userEntity) {
 
-            return User.builder()
+            return UserDto.builder()
                     .id(userEntity.getId().toString())
                     .username(userEntity.getUsername())
                     .nickname(userEntity.getNickname())
                     .email(userEntity.getEmail())
-                    .userRoleList(UserRole.from(userEntity.getUserRoleList()))
+                    .userRoleList(UserRoleDto.from(userEntity.getUserRoleList()))
 //                    .memberSocialList(MemberSocial.from(userEntity.getMemberSocialList()))
                     .build();
         }
 
         @Getter
         @Builder
-        public static class UserRole {
+        public static class UserRoleDto {
 
             private String id;
             private UserRoleEntity.Role role;
 
-            public static List<UserRole> from(List<UserRoleEntity> userRoleEntityList) {
+            public static List<UserRoleDto> from(List<UserRoleEntity> userRoleEntityList) {
                 return userRoleEntityList.stream()
-                        .map(UserRole::from)
+                        .map(UserRoleDto::from)
                         .toList();
             }
 
-            public static UserRole from(UserRoleEntity userRoleEntity) {
-                return UserRole.builder()
+            public static UserRoleDto from(UserRoleEntity userRoleEntity) {
+                return UserRoleDto.builder()
                         .id(userRoleEntity.getId().toString())
                         .role(userRoleEntity.getRole())
                         .build();
@@ -66,7 +66,7 @@ public class ResGetUserDtoV1 {
 
         @Getter
         @Builder
-        public static class UserSocial {
+        public static class UserSocialDto {
 
             private String id;
 //            private MemberSocialEntity.Provider provider;

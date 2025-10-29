@@ -286,7 +286,7 @@ class ProductControllerV1Test {
         ensureManagerRole("temp1");
         ReqPostAuthLoginDtoV1 reqDto = ReqPostAuthLoginDtoV1.builder()
                 .user(
-                        ReqPostAuthLoginDtoV1.User.builder()
+                        ReqPostAuthLoginDtoV1.UserDto.builder()
                                 .username("temp1")
                                 .password("temp1234")
                                 .build()

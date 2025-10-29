@@ -42,7 +42,7 @@ public class AuthControllerV1Test {
 
         ReqPostAuthRegisterDtoV1 reqDto = ReqPostAuthRegisterDtoV1.builder()
                 .user(
-                        ReqPostAuthRegisterDtoV1.User.builder()
+                        ReqPostAuthRegisterDtoV1.UserDto.builder()
                                 .username("temp4")
                                 .password("temp1234")
                                 .email("temp4@temp.com")
@@ -83,7 +83,7 @@ public class AuthControllerV1Test {
 
         ReqPostAuthLoginDtoV1 reqDto = ReqPostAuthLoginDtoV1.builder()
                 .user(
-                        ReqPostAuthLoginDtoV1.User.builder()
+                        ReqPostAuthLoginDtoV1.UserDto.builder()
                                 .username("temp1")
                                 .password("temp1234")
                                 .build()
@@ -160,7 +160,7 @@ public class AuthControllerV1Test {
     private MvcResult login() throws Exception {
         ReqPostAuthLoginDtoV1 reqDto = ReqPostAuthLoginDtoV1.builder()
                 .user(
-                        ReqPostAuthLoginDtoV1.User.builder()
+                        ReqPostAuthLoginDtoV1.UserDto.builder()
                                 .username("temp1")
                                 .password("temp1234")
                                 .build()

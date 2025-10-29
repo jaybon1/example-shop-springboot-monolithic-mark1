@@ -37,7 +37,7 @@ public class AuthServiceV1 {
     @Transactional
     public void postAuthRegister(ReqPostAuthRegisterDtoV1 reqDto) {
 
-        ReqPostAuthRegisterDtoV1.User reqUser = reqDto.getUser();
+        ReqPostAuthRegisterDtoV1.UserDto reqUser = reqDto.getUser();
 
         userRepository.findByUsername(reqUser.getUsername())
                 .ifPresent(memberEntity -> {
@@ -63,7 +63,7 @@ public class AuthServiceV1 {
     @Transactional
     public ResPostAuthLoginDtoV1 postAuthLogin(ReqPostAuthLoginDtoV1 reqDto) {
 
-        ReqPostAuthLoginDtoV1.User reqUser = reqDto.getUser();
+        ReqPostAuthLoginDtoV1.UserDto reqUser = reqDto.getUser();
 
         UserEntity userEntity = userRepository.findByUsername(reqUser.getUsername())
                 .orElseThrow(() -> new AuthException(AuthError.AUTH_USERNAME_NOT_EXIST));

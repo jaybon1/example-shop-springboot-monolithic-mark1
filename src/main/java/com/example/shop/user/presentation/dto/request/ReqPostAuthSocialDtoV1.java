@@ -13,11 +13,11 @@ public class ReqPostAuthSocialDtoV1 {
 
     @NotNull
     @Valid
-    private UserSocial userSocial;
+    private UserSocialDto userSocial;
 
     @Getter
     @Builder
-    public static class UserSocial {
+    public static class UserSocialDto {
 
         private UserSocialEntity.Provider provider;
 

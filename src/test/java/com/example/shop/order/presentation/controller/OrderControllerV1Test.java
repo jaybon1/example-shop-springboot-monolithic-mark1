@@ -263,7 +263,7 @@ class OrderControllerV1Test {
     private String loginAndGetAccessToken(String username) throws Exception {
         ReqPostAuthLoginDtoV1 reqDto = ReqPostAuthLoginDtoV1.builder()
                 .user(
-                        ReqPostAuthLoginDtoV1.User.builder()
+                        ReqPostAuthLoginDtoV1.UserDto.builder()
                                 .username(username)
                                 .password("temp1234")
                                 .build()

@@ -166,7 +166,7 @@ public class UserControllerV1Test {
     private MvcResult login() throws Exception {
         ReqPostAuthLoginDtoV1 reqDto = ReqPostAuthLoginDtoV1.builder()
                 .user(
-                        ReqPostAuthLoginDtoV1.User.builder()
+                        ReqPostAuthLoginDtoV1.UserDto.builder()
                                 .username("temp1")
                                 .password("temp1234")
                                 .build()

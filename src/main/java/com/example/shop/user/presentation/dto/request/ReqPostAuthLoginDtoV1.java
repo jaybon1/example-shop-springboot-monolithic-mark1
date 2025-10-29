@@ -12,11 +12,11 @@ public class ReqPostAuthLoginDtoV1 {
 
     @NotNull(message = "회원 정보를 입력해주세요.")
     @Valid
-    private User user;
+    private UserDto user;
 
     @Getter
     @Builder
-    public static class User {
+    public static class UserDto {
 
         @NotBlank(message = "아이디를 입력해주세요.")
         private String username;
