@@ -8,17 +8,17 @@ import lombok.Getter;
 @Builder
 public class ResGetProductDtoV1 {
 
-    private Product product;
+    private ProductDto product;
 
     public static ResGetProductDtoV1 of(ProductEntity productEntity) {
         return ResGetProductDtoV1.builder()
-                .product(Product.from(productEntity))
+                .product(ProductDto.from(productEntity))
                 .build();
     }
 
     @Getter
     @Builder
-    public static class Product {
+    public static class ProductDto {
 
         private String id;
 
@@ -28,8 +28,8 @@ public class ResGetProductDtoV1 {
 
         private Long stock;
 
-        public static Product from(ProductEntity productEntity) {
-            return Product.builder()
+        public static ProductDto from(ProductEntity productEntity) {
+            return ProductDto.builder()
                     .id(productEntity.getId().toString())
                     .name(productEntity.getName())
                     .price(productEntity.getPrice())

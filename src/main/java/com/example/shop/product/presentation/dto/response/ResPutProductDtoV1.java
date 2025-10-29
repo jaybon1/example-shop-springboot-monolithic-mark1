@@ -8,22 +8,22 @@ import lombok.Getter;
 @Builder
 public class ResPutProductDtoV1 {
 
-    private Product product;
+    private ProductDto product;
 
     public static ResPutProductDtoV1 of(ProductEntity productEntity) {
         return ResPutProductDtoV1.builder()
-                .product(Product.from(productEntity))
+                .product(ProductDto.from(productEntity))
                 .build();
     }
 
     @Getter
     @Builder
-    public static class Product {
+    public static class ProductDto {
 
         private String id;
 
-        public static Product from(ProductEntity productEntity) {
-            return Product.builder()
+        public static ProductDto from(ProductEntity productEntity) {
+            return ProductDto.builder()
                     .id(productEntity.getId().toString())
                     .build();
         }

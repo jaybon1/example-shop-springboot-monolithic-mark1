@@ -13,11 +13,11 @@ public class ReqPostProductsDtoV1 {
 
     @NotNull(message = "상품 정보를 입력해주세요.")
     @Valid
-    private Product product;
+    private ProductDto product;
 
     @Getter
     @Builder
-    public static class Product {
+    public static class ProductDto {
 
         @NotBlank(message = "상품명을 입력해주세요.")
         private String name;

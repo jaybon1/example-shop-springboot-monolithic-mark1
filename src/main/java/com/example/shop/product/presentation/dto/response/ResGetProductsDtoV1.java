@@ -18,12 +18,12 @@ public class ResGetProductsDtoV1 {
 
     @Getter
     @ToString
-    public static class ProductPage extends PagedModel<ProductPage.Product> {
+    public static class ProductPage extends PagedModel<ProductPage.ProductDto> {
 
         public ProductPage(Page<ProductEntity> productEntityPage) {
             super(
                     new PageImpl<>(
-                            Product.from(productEntityPage.getContent()),
+                            ProductDto.from(productEntityPage.getContent()),
                             productEntityPage.getPageable(),
                             productEntityPage.getTotalElements()
                     )
@@ -32,21 +32,21 @@ public class ResGetProductsDtoV1 {
 
         @Getter
         @Builder
-        public static class Product {
+        public static class ProductDto {
 
             private String id;
             private String name;
             private Long price;
             private Long stock;
 
-            private static List<Product> from(List<ProductEntity> productEntityList) {
+            private static List<ProductDto> from(List<ProductEntity> productEntityList) {
                 return productEntityList.stream()
-                        .map(Product::from)
+                        .map(ProductDto::from)
                         .toList();
             }
 
-            public static Product from(ProductEntity productEntity) {
-                return Product.builder()
+            public static ProductDto from(ProductEntity productEntity) {
+                return ProductDto.builder()
                         .id(productEntity.getId().toString())
                         .name(productEntity.getName())
                         .price(productEntity.getPrice())

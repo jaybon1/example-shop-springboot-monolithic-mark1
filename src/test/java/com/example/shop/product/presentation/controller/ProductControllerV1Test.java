@@ -139,7 +139,7 @@ class ProductControllerV1Test {
 
         ReqPostProductsDtoV1 reqDto = ReqPostProductsDtoV1.builder()
                 .product(
-                        ReqPostProductsDtoV1.Product.builder()
+                        ReqPostProductsDtoV1.ProductDto.builder()
                                 .name(productName)
                                 .price(12000L)
                                 .stock(50L)
@@ -195,7 +195,7 @@ class ProductControllerV1Test {
 
         ReqPutProductDtoV1 reqDto = ReqPutProductDtoV1.builder()
                 .product(
-                        ReqPutProductDtoV1.Product.builder()
+                        ReqPutProductDtoV1.ProductDto.builder()
                                 .name(updatedName)
                                 .price(15000L)
                                 .stock(70L)
@@ -316,7 +316,7 @@ class ProductControllerV1Test {
 
         ReqPostProductsDtoV1 reqDto = ReqPostProductsDtoV1.builder()
                 .product(
-                        ReqPostProductsDtoV1.Product.builder()
+                        ReqPostProductsDtoV1.ProductDto.builder()
                                 .name(productName)
                                 .price(5000L)
                                 .stock(30L)

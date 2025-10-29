@@ -47,7 +47,7 @@ public class ProductServiceV1 {
 
     @Transactional
     public ResPostProductsDtoV1 postProducts(ReqPostProductsDtoV1 reqDto) {
-        ReqPostProductsDtoV1.Product reqProduct = reqDto.getProduct();
+        ReqPostProductsDtoV1.ProductDto reqProduct = reqDto.getProduct();
         String name = reqProduct.getName().trim();
         validateDuplicatedName(name, Optional.empty());
 
@@ -66,7 +66,7 @@ public class ProductServiceV1 {
         validateWriteAuthority(authUserRoleList);
         ProductEntity productEntity = findProductById(productId);
 
-        ReqPutProductDtoV1.Product reqProduct = reqDto.getProduct();
+        ReqPutProductDtoV1.ProductDto reqProduct = reqDto.getProduct();
 
         String nameToUpdate = null;
         if (reqProduct.getName() != null) {
