@@ -86,7 +86,7 @@ class ProductServiceV1Test {
         });
 
         ReqPostProductsDtoV1 reqDto = ReqPostProductsDtoV1.builder()
-                .product(ReqPostProductsDtoV1.Product.builder()
+                .product(ReqPostProductsDtoV1.ProductDto.builder()
                         .name(" new product ")
                         .price(5000L)
                         .stock(20L)
@@ -103,14 +103,14 @@ class ProductServiceV1Test {
     @DisplayName("상품 수정 시 권한 없으면 예외를 던진다")
     void putProductRequiresAuthority() {
         ReqPutProductDtoV1 reqDto = ReqPutProductDtoV1.builder()
-                .product(ReqPutProductDtoV1.Product.builder()
+                .product(ReqPutProductDtoV1.ProductDto.builder()
                         .name("updated")
                         .price(2000L)
                         .stock(5L)
                         .build())
                 .build();
 
-        assertThatThrownBy(() -> productServiceV1.putProduct(UUID.randomUUID(), List.of("USER"), existingProduct.getId(), reqDto))
+        assertThatThrownBy(() -> productServiceV1.putProduct(List.of("USER"), existingProduct.getId(), reqDto))
                 .isInstanceOf(ProductException.class)
                 .extracting(Throwable::getMessage)
                 .asString()
