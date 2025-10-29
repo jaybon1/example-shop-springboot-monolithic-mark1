@@ -18,59 +18,41 @@ import java.util.UUID;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class CustomUserDetails implements UserDetails, OAuth2User {
 
-    private UserDto user;
+    private UUID id;
+    private String username;
+    private String password;
+    private String nickname;
+    private String email;
+    private List<String> roleList;
     private Map<String, Object> attributes;
 
     public static CustomUserDetails of(UserEntity userEntity) {
         return CustomUserDetails.builder()
-                .user(UserDto.from(userEntity))
+                .id(userEntity.getId())
+                .username(userEntity.getUsername())
+                .password(userEntity.getPassword())
+                .nickname(userEntity.getNickname())
+                .email(userEntity.getEmail())
+                .roleList(
+                        userEntity.getUserRoleList()
+                                .stream()
+                                .map(memberRoleEntity -> memberRoleEntity.getRole().toString())
+                                .toList()
+                )
                 .attributes(Map.of())
                 .build();
     }
 
     public static CustomUserDetails of(DecodedJWT decodedAccessJwt) {
         return CustomUserDetails.builder()
-                .user(UserDto.from(decodedAccessJwt))
+                .id(UUID.fromString(decodedAccessJwt.getClaim("id").asString()))
+                .username(decodedAccessJwt.getClaim("username").asString())
+                .password(null)
+                .nickname(String.valueOf(decodedAccessJwt.getClaim("nickname")))
+                .email(String.valueOf(decodedAccessJwt.getClaim("email")))
+                .roleList(decodedAccessJwt.getClaim("roleList").asList(String.class))
                 .attributes(Map.of())
                 .build();
-    }
-
-    @Getter
-    @Builder
-    public static class UserDto {
-        private UUID id;
-        private String username;
-        private String password;
-        private String nickname;
-        private String email;
-        private List<String> roleList;
-
-        public static UserDto from(DecodedJWT decodedAccessJwt) {
-            return UserDto.builder()
-                    .id(UUID.fromString(decodedAccessJwt.getClaim("id").asString()))
-                    .username(decodedAccessJwt.getClaim("username").asString())
-                    .password(null)
-                    .nickname(String.valueOf(decodedAccessJwt.getClaim("nickname")))
-                    .email(String.valueOf(decodedAccessJwt.getClaim("email")))
-                    .roleList(decodedAccessJwt.getClaim("roleList").asList(String.class))
-                    .build();
-        }
-
-        public static UserDto from(UserEntity userEntity) {
-            return UserDto.builder()
-                    .id(userEntity.getId())
-                    .username(userEntity.getUsername())
-                    .password(userEntity.getPassword())
-                    .nickname(userEntity.getNickname())
-                    .email(userEntity.getEmail())
-                    .roleList(
-                            userEntity.getUserRoleList()
-                                    .stream()
-                                    .map(memberRoleEntity -> memberRoleEntity.getRole().toString())
-                                    .toList()
-                    )
-                    .build();
-        }
     }
 
     @Override
@@ -80,12 +62,12 @@ public class CustomUserDetails implements UserDetails, OAuth2User {
 
     @Override
     public String getName() {
-        return user.getUsername();
+        return username;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return user.getRoleList()
+        return roleList
                 .stream()
                 .map(role -> (GrantedAuthority) () -> "ROLE_" + role)
                 .toList();
@@ -93,12 +75,12 @@ public class CustomUserDetails implements UserDetails, OAuth2User {
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return password;
     }
 
     @Override
     public String getUsername() {
-        return user.getUsername();
+        return username;
     }
 
     @Override
