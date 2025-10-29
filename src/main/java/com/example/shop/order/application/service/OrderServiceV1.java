@@ -60,10 +60,10 @@ public class OrderServiceV1 {
     @Transactional
     public ResPostOrdersDtoV1 postOrders(UUID authUserId, ReqPostOrdersDtoV1 reqDto) {
 
-        List<ReqPostOrdersDtoV1.Order.OrderItem> reqOrderItemList = reqDto.getOrder().getOrderItemList();
+        List<ReqPostOrdersDtoV1.OrderDto.OrderItem> reqOrderItemList = reqDto.getOrder().getOrderItemList();
 
         Set<UUID> productIdSet = reqOrderItemList.stream()
-                .map(ReqPostOrdersDtoV1.Order.OrderItem::getProductId)
+                .map(ReqPostOrdersDtoV1.OrderDto.OrderItem::getProductId)
                 .collect(Collectors.toSet());
 
         Map<UUID, ProductEntity> productMap = productRepository.findAllById(productIdSet)
@@ -82,7 +82,7 @@ public class OrderServiceV1 {
                 .build();
 
         long totalAmount = 0L;
-        for (ReqPostOrdersDtoV1.Order.OrderItem reqOrderItem : reqOrderItemList) {
+        for (ReqPostOrdersDtoV1.OrderDto.OrderItem reqOrderItem : reqOrderItemList) {
             UUID productId = reqOrderItem.getProductId();
             Long quantityValue = reqOrderItem.getQuantity();
 

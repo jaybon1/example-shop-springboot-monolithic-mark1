@@ -69,9 +69,9 @@ class OrderControllerV1Test {
                 .orElseThrow();
 
         ReqPostOrdersDtoV1 reqDto = ReqPostOrdersDtoV1.builder()
-                .order(ReqPostOrdersDtoV1.Order.builder()
+                .order(ReqPostOrdersDtoV1.OrderDto.builder()
                         .orderItemList(List.of(
-                                ReqPostOrdersDtoV1.Order.OrderItem.builder()
+                                ReqPostOrdersDtoV1.OrderDto.OrderItem.builder()
                                         .productId(productEntity.getId())
                                         .quantity(1L)
                                         .build()
@@ -293,9 +293,9 @@ class OrderControllerV1Test {
                 .orElseThrow();
 
         ReqPostOrdersDtoV1 reqDto = ReqPostOrdersDtoV1.builder()
-                .order(ReqPostOrdersDtoV1.Order.builder()
+                .order(ReqPostOrdersDtoV1.OrderDto.builder()
                         .orderItemList(List.of(
-                                ReqPostOrdersDtoV1.Order.OrderItem.builder()
+                                ReqPostOrdersDtoV1.OrderDto.OrderItem.builder()
                                         .productId(productEntity.getId())
                                         .quantity(1L)
                                         .build()

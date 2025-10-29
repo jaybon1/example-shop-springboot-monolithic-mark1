@@ -13,42 +13,42 @@ import java.util.List;
 @Builder
 public class ResPostOrdersDtoV1 {
 
-    private Order order;
+    private OrderDto order;
 
     public static ResPostOrdersDtoV1 of(OrderEntity orderEntity, PaymentEntity paymentEntity) {
         return ResPostOrdersDtoV1.builder()
-                .order(Order.from(orderEntity, paymentEntity))
+                .order(OrderDto.from(orderEntity, paymentEntity))
                 .build();
     }
 
     @Getter
     @Builder
-    public static class Order {
+    public static class OrderDto {
 
         private String id;
         private OrderEntity.Status status;
         private Long totalAmount;
         private Instant createdAt;
         private Instant updatedAt;
-        private List<OrderItem> orderItemList;
-        private Payment payment;
+        private List<OrderItemDto> orderItemList;
+        private PaymentDto payment;
 
-        public static Order from(OrderEntity orderEntity, PaymentEntity paymentEntity) {
-            return Order.builder()
+        public static OrderDto from(OrderEntity orderEntity, PaymentEntity paymentEntity) {
+            return OrderDto.builder()
                     .id(orderEntity.getId().toString())
                     .status(orderEntity.getStatus())
                     .totalAmount(orderEntity.getTotalAmount())
                     .createdAt(orderEntity.getCreatedAt())
                     .updatedAt(orderEntity.getUpdatedAt())
-                    .orderItemList(OrderItem.from(orderEntity.getOrderItemList()))
-                    .payment(Payment.from(paymentEntity))
+                    .orderItemList(OrderItemDto.from(orderEntity.getOrderItemList()))
+                    .payment(PaymentDto.from(paymentEntity))
                     .build();
         }
     }
 
     @Getter
     @Builder
-    public static class OrderItem {
+    public static class OrderItemDto {
 
         private String id;
         private String productId;
@@ -57,14 +57,14 @@ public class ResPostOrdersDtoV1 {
         private Long quantity;
         private Long lineTotal;
 
-        private static List<OrderItem> from(List<OrderItemEntity> orderItemEntityList) {
+        private static List<OrderItemDto> from(List<OrderItemEntity> orderItemEntityList) {
             return orderItemEntityList.stream()
-                    .map(OrderItem::from)
+                    .map(OrderItemDto::from)
                     .toList();
         }
 
-        public static OrderItem from(OrderItemEntity orderItemEntity) {
-            return OrderItem.builder()
+        public static OrderItemDto from(OrderItemEntity orderItemEntity) {
+            return OrderItemDto.builder()
                     .id(orderItemEntity.getId().toString())
                     .productId(orderItemEntity.getProductId().toString())
                     .productName(orderItemEntity.getProductName())
@@ -77,7 +77,7 @@ public class ResPostOrdersDtoV1 {
 
     @Getter
     @Builder
-    public static class Payment {
+    public static class PaymentDto {
 
         private String id;
         private PaymentEntity.Status status;
@@ -85,11 +85,11 @@ public class ResPostOrdersDtoV1 {
         private Long amount;
         private String transactionKey;
 
-        public static Payment from(PaymentEntity paymentEntity) {
+        public static PaymentDto from(PaymentEntity paymentEntity) {
             if (paymentEntity == null) {
                 return null;
             }
-            return Payment.builder()
+            return PaymentDto.builder()
                     .id(paymentEntity.getId().toString())
                     .status(paymentEntity.getStatus())
                     .method(paymentEntity.getMethod())

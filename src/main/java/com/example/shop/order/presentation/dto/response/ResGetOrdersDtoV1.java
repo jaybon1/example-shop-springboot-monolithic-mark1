@@ -20,12 +20,12 @@ public class ResGetOrdersDtoV1 {
 
     @Getter
     @ToString
-    public static class OrderPage extends PagedModel<OrderPage.Order> {
+    public static class OrderPage extends PagedModel<OrderPage.OrderDto> {
 
         public OrderPage(Page<OrderEntity> orderEntityPage) {
             super(
                     new PageImpl<>(
-                            Order.from(orderEntityPage.getContent()),
+                            OrderDto.from(orderEntityPage.getContent()),
                             orderEntityPage.getPageable(),
                             orderEntityPage.getTotalElements()
                     )
@@ -34,7 +34,7 @@ public class ResGetOrdersDtoV1 {
 
         @Getter
         @Builder
-        public static class Order {
+        public static class OrderDto {
 
             private String id;
             private Status status;
@@ -42,14 +42,14 @@ public class ResGetOrdersDtoV1 {
             private Instant createdAt;
             private Instant updatedAt;
 
-            private static List<Order> from(List<OrderEntity> orderEntityList) {
+            private static List<OrderDto> from(List<OrderEntity> orderEntityList) {
                 return orderEntityList.stream()
-                        .map(Order::from)
+                        .map(OrderDto::from)
                         .toList();
             }
 
-            public static Order from(OrderEntity orderEntity) {
-                return Order.builder()
+            public static OrderDto from(OrderEntity orderEntity) {
+                return OrderDto.builder()
                         .id(orderEntity.getId().toString())
                         .status(orderEntity.getStatus())
                         .totalAmount(orderEntity.getTotalAmount())
