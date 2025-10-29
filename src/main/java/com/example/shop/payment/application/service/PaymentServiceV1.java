@@ -41,7 +41,7 @@ public class PaymentServiceV1 {
 
     @Transactional
     public ResPostPaymentsDtoV1 postPayments(UUID authUserId, ReqPostPaymentsDtoV1 reqDto) {
-        ReqPostPaymentsDtoV1.Payment reqPayment = reqDto.getPayment();
+        ReqPostPaymentsDtoV1.PaymentDto reqPayment = reqDto.getPayment();
         UUID orderId = reqPayment.getOrderId();
         OrderEntity orderEntity = orderRepository.findById(orderId)
                 .orElseThrow(() -> new PaymentException(PaymentError.PAYMENT_ORDER_NOT_FOUND));

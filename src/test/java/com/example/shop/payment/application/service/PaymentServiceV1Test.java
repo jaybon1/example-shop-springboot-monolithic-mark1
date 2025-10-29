@@ -78,7 +78,7 @@ class PaymentServiceV1Test {
         });
 
         ReqPostPaymentsDtoV1 reqDto = ReqPostPaymentsDtoV1.builder()
-                .payment(ReqPostPaymentsDtoV1.Payment.builder()
+                .payment(ReqPostPaymentsDtoV1.PaymentDto.builder()
                         .orderId(orderEntity.getId())
                         .method(PaymentEntity.Method.CARD)
                         .transactionKey("tx-key")
@@ -97,7 +97,7 @@ class PaymentServiceV1Test {
         when(orderRepository.findById(orderEntity.getId())).thenReturn(Optional.of(orderEntity));
 
         ReqPostPaymentsDtoV1 reqDto = ReqPostPaymentsDtoV1.builder()
-                .payment(ReqPostPaymentsDtoV1.Payment.builder()
+                .payment(ReqPostPaymentsDtoV1.PaymentDto.builder()
                         .orderId(orderEntity.getId())
                         .method(PaymentEntity.Method.CARD)
                         .transactionKey("tx-key")

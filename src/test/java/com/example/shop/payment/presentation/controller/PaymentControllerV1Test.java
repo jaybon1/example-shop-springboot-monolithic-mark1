@@ -62,7 +62,7 @@ class PaymentControllerV1Test {
         String orderId = createOrder(accessJwt);
 
         ReqPostPaymentsDtoV1 reqDto = ReqPostPaymentsDtoV1.builder()
-                .payment(ReqPostPaymentsDtoV1.Payment.builder()
+                .payment(ReqPostPaymentsDtoV1.PaymentDto.builder()
                         .orderId(UUID.fromString(orderId))
                         .method(Method.CARD)
                         .transactionKey("test-transaction")
@@ -192,7 +192,7 @@ class PaymentControllerV1Test {
 
     private String payOrder(String accessJwt, String orderId) throws Exception {
         ReqPostPaymentsDtoV1 reqDto = ReqPostPaymentsDtoV1.builder()
-                .payment(ReqPostPaymentsDtoV1.Payment.builder()
+                .payment(ReqPostPaymentsDtoV1.PaymentDto.builder()
                         .orderId(UUID.fromString(orderId))
                         .method(Method.CARD)
                         .transactionKey("test-transaction")

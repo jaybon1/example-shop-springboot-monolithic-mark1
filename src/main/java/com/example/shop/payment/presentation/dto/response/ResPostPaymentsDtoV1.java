@@ -9,17 +9,17 @@ import lombok.Getter;
 @Builder
 public class ResPostPaymentsDtoV1 {
 
-    private Payment payment;
+    private PaymentDto payment;
 
     public static ResPostPaymentsDtoV1 of(PaymentEntity paymentEntity, OrderEntity orderEntity) {
         return ResPostPaymentsDtoV1.builder()
-                .payment(Payment.from(paymentEntity, orderEntity))
+                .payment(PaymentDto.from(paymentEntity, orderEntity))
                 .build();
     }
 
     @Getter
     @Builder
-    public static class Payment {
+    public static class PaymentDto {
 
         private String id;
         private PaymentEntity.Status status;
@@ -29,8 +29,8 @@ public class ResPostPaymentsDtoV1 {
         private String orderId;
         private OrderEntity.Status orderStatus;
 
-        public static Payment from(PaymentEntity paymentEntity, OrderEntity orderEntity) {
-            return Payment.builder()
+        public static PaymentDto from(PaymentEntity paymentEntity, OrderEntity orderEntity) {
+            return PaymentDto.builder()
                     .id(paymentEntity.getId().toString())
                     .status(paymentEntity.getStatus())
                     .method(paymentEntity.getMethod())

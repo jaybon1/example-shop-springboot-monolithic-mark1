@@ -14,11 +14,11 @@ public class ReqPostPaymentsDtoV1 {
 
     @NotNull(message = "결제 정보를 입력해주세요.")
     @Valid
-    private Payment payment;
+    private PaymentDto payment;
 
     @Getter
     @Builder
-    public static class Payment {
+    public static class PaymentDto {
 
         @NotNull(message = "주문 ID를 입력해주세요.")
         private UUID orderId;

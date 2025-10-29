@@ -14,17 +14,17 @@ import java.util.List;
 @Builder
 public class ResGetPaymentDtoV1 {
 
-    private Payment payment;
+    private PaymentDto payment;
 
     public static ResGetPaymentDtoV1 of(PaymentEntity paymentEntity) {
         return ResGetPaymentDtoV1.builder()
-                .payment(Payment.from(paymentEntity))
+                .payment(PaymentDto.from(paymentEntity))
                 .build();
     }
 
     @Getter
     @Builder
-    public static class Payment {
+    public static class PaymentDto {
 
         private String id;
         private PaymentEntity.Status status;
@@ -33,11 +33,11 @@ public class ResGetPaymentDtoV1 {
         private String transactionKey;
         private Instant createdAt;
         private Instant updatedAt;
-        private Order order;
-        private User user;
+        private OrderDto order;
+        private UserDto user;
 
-        public static Payment from(PaymentEntity paymentEntity) {
-            return Payment.builder()
+        public static PaymentDto from(PaymentEntity paymentEntity) {
+            return PaymentDto.builder()
                     .id(paymentEntity.getId().toString())
                     .status(paymentEntity.getStatus())
                     .method(paymentEntity.getMethod())
@@ -45,37 +45,37 @@ public class ResGetPaymentDtoV1 {
                     .transactionKey(paymentEntity.getTransactionKey())
                     .createdAt(paymentEntity.getCreatedAt())
                     .updatedAt(paymentEntity.getUpdatedAt())
-                    .order(Order.from(paymentEntity.getOrder()))
-                    .user(User.from(paymentEntity.getUser()))
+                    .order(OrderDto.from(paymentEntity.getOrder()))
+                    .user(UserDto.from(paymentEntity.getUser()))
                     .build();
         }
 
         @Getter
         @Builder
-        public static class Order {
+        public static class OrderDto {
 
             private String id;
             private OrderEntity.Status status;
             private Long totalAmount;
             private Instant createdAt;
             private Instant updatedAt;
-            private List<OrderItem> orderItemList;
+            private List<OrderItemDto> orderItemList;
 
-            public static Order from(OrderEntity orderEntity) {
-                return Order.builder()
+            public static OrderDto from(OrderEntity orderEntity) {
+                return OrderDto.builder()
                         .id(orderEntity.getId().toString())
                         .status(orderEntity.getStatus())
                         .totalAmount(orderEntity.getTotalAmount())
                         .createdAt(orderEntity.getCreatedAt())
                         .updatedAt(orderEntity.getUpdatedAt())
-                        .orderItemList(OrderItem.from(orderEntity.getOrderItemList()))
+                        .orderItemList(OrderItemDto.from(orderEntity.getOrderItemList()))
                         .build();
             }
         }
 
         @Getter
         @Builder
-        public static class OrderItem {
+        public static class OrderItemDto {
 
             private String id;
             private String productId;
@@ -84,14 +84,14 @@ public class ResGetPaymentDtoV1 {
             private Long quantity;
             private Long lineTotal;
 
-            private static List<OrderItem> from(List<OrderItemEntity> orderItemEntityList) {
+            private static List<OrderItemDto> from(List<OrderItemEntity> orderItemEntityList) {
                 return orderItemEntityList.stream()
-                        .map(OrderItem::from)
+                        .map(OrderItemDto::from)
                         .toList();
             }
 
-            public static OrderItem from(OrderItemEntity orderItemEntity) {
-                return OrderItem.builder()
+            public static OrderItemDto from(OrderItemEntity orderItemEntity) {
+                return OrderItemDto.builder()
                         .id(orderItemEntity.getId().toString())
                         .productId(orderItemEntity.getProductId().toString())
                         .productName(orderItemEntity.getProductName())
@@ -104,15 +104,15 @@ public class ResGetPaymentDtoV1 {
 
         @Getter
         @Builder
-        public static class User {
+        public static class UserDto {
 
             private String id;
             private String username;
             private String nickname;
             private String email;
 
-            public static User from(UserEntity userEntity) {
-                return User.builder()
+            public static UserDto from(UserEntity userEntity) {
+                return UserDto.builder()
                         .id(userEntity.getId().toString())
                         .username(userEntity.getUsername())
                         .nickname(userEntity.getNickname())
