@@ -18,26 +18,26 @@ import java.util.UUID;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class CustomUserDetails implements UserDetails, OAuth2User {
 
-    private User user;
+    private UserDto user;
     private Map<String, Object> attributes;
 
     public static CustomUserDetails of(UserEntity userEntity) {
         return CustomUserDetails.builder()
-                .user(User.from(userEntity))
+                .user(UserDto.from(userEntity))
                 .attributes(Map.of())
                 .build();
     }
 
     public static CustomUserDetails of(DecodedJWT decodedAccessJwt) {
         return CustomUserDetails.builder()
-                .user(User.from(decodedAccessJwt))
+                .user(UserDto.from(decodedAccessJwt))
                 .attributes(Map.of())
                 .build();
     }
 
     @Getter
     @Builder
-    public static class User {
+    public static class UserDto {
         private UUID id;
         private String username;
         private String password;
@@ -45,8 +45,8 @@ public class CustomUserDetails implements UserDetails, OAuth2User {
         private String email;
         private List<String> roleList;
 
-        public static User from(DecodedJWT decodedAccessJwt) {
-            return User.builder()
+        public static UserDto from(DecodedJWT decodedAccessJwt) {
+            return UserDto.builder()
                     .id(UUID.fromString(decodedAccessJwt.getClaim("id").asString()))
                     .username(decodedAccessJwt.getClaim("username").asString())
                     .password(null)
@@ -56,8 +56,8 @@ public class CustomUserDetails implements UserDetails, OAuth2User {
                     .build();
         }
 
-        public static User from(UserEntity userEntity) {
-            return User.builder()
+        public static UserDto from(UserEntity userEntity) {
+            return UserDto.builder()
                     .id(userEntity.getId())
                     .username(userEntity.getUsername())
                     .password(userEntity.getPassword())
