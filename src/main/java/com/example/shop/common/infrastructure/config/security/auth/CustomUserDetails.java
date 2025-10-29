@@ -21,13 +21,6 @@ public class CustomUserDetails implements UserDetails, OAuth2User {
     private User user;
     private Map<String, Object> attributes;
 
-    //    public static CustomUserDetails of(MemberEntity memberEntity, Map<String, Object> attributes) {
-//        return CustomUserDetails.builder()
-//                .member(Member.from(memberEntity))
-//                .attributes(attributes)
-//                .build();
-//    }
-//
     public static CustomUserDetails of(UserEntity userEntity) {
         return CustomUserDetails.builder()
                 .user(User.from(userEntity))
